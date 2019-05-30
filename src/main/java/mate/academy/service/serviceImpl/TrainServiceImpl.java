@@ -1,11 +1,8 @@
 package mate.academy.service.serviceImpl;
 
-import mate.academy.Test;
 import mate.academy.dao.TrainDao;
 import mate.academy.model.Train;
 import mate.academy.service.TrainService;
-import org.hibernate.Session;
-import org.hibernate.query.Query;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;

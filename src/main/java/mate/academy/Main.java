@@ -4,7 +4,7 @@ import mate.academy.model.Train;
 import mate.academy.service.TrainService;
 import mate.academy.service.factory.ServiceFactory;
 
-public class Test {
+public class Main {
     public static void main(String[] args) {
         TrainService trainService = ServiceFactory.getTrainService();
         Train hundai = Train
@@ -18,6 +18,8 @@ public class Test {
         hundai.setName("Tarpan");
         trainService.update(hundai);
         System.out.println(trainService.getTrains());
-
+        System.out.println(trainService.readById(1L));
+        trainService.delete(hundai);
+        System.out.println(trainService.getTrains());
     }
 }
