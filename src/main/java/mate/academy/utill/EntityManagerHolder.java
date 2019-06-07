@@ -7,6 +7,9 @@ import javax.persistence.Persistence;
 public class EntityManagerHolder {
     protected static EntityManager em;
 
+    private EntityManagerHolder() {
+    }
+
     static {
         EntityManagerFactory emf = Persistence
                 .createEntityManagerFactory("Train");
@@ -15,8 +18,5 @@ public class EntityManagerHolder {
 
     public static EntityManager getEntityManager() {
         return em;
-    }
-
-    private EntityManagerHolder() {
     }
 }

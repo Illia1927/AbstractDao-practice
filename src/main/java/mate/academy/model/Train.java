@@ -34,7 +34,7 @@ public class Train {
     private String name;
 
     @Column
-    private Integer number;
+    private long number;
 
     @Column
     private String adressFrom;

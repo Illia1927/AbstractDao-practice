@@ -1,25 +1,27 @@
 package mate.academy;
 
+import mate.academy.dao.jdbcDao.TrainDaoJdbc;
+import mate.academy.dao.jdbcDao.TrainDaoJdbcImpl;
 import mate.academy.model.Train;
-import mate.academy.service.TrainService;
-import mate.academy.service.factory.ServiceFactory;
+import org.apache.log4j.Logger;
 
 public class Main {
+    private static final Logger logger = Logger.getLogger(Main.class);
     public static void main(String[] args) {
-        TrainService trainService = ServiceFactory.getTrainService();
-        Train hundai = Train
-                .builder()
-                .name("Hyundai")
-                .number(321)
-                .adressFrom("Zaporizhia")
-                .adressTo("Kiev")
+        Train train = Train.builder()
+                .name("Tarpan")
+                .number(1488)
+                .adressFrom("Kiev")
+                .adressTo("Odessa")
                 .build();
-        trainService.create(hundai);
-        hundai.setName("Tarpan");
-        trainService.update(hundai);
-        System.out.println(trainService.getTrains());
-        System.out.println(trainService.readById(1L));
-        trainService.delete(hundai);
-        System.out.println(trainService.getTrains());
+        TrainDaoJdbc trainDaoJdbc = new TrainDaoJdbcImpl(Train.class);
+        trainDaoJdbc.save(train);
+        Train trainFromDb = trainDaoJdbc.readById(2L);
+        trainFromDb.setName("NYUNDAI");
+        trainFromDb.setNumber(367);
+        trainFromDb.setAdressTo("NIGERIA");
+        trainDaoJdbc.update(trainFromDb);
+        trainDaoJdbc.deleteById(1L);
+        logger.info(trainDaoJdbc.getAll());
     }
 }

@@ -1,9 +1,8 @@
 package mate.academy.dao;
 
 import javax.persistence.EntityManager;
-import java.io.Serializable;
 
-public abstract class AbstractDao<T, ID extends Serializable> implements CrudDao<T, ID> {
+public abstract class AbstractDao<T, ID> implements CrudDao<T, ID> {
     protected final EntityManager entityManager;
     protected final Class<T> clazz;
 
@@ -33,11 +32,6 @@ public abstract class AbstractDao<T, ID extends Serializable> implements CrudDao
         entityManager.getTransaction().begin();
         entityManager.merge(entity);
         entityManager.getTransaction().commit();
-    }
-
-    @Override
-    public void update(ID id, T entity) {
-
     }
 
     @Override
